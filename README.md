@@ -46,4 +46,5 @@ file generated from the attributes.
 
 # Author #
 
-Author:: Yet Another Clever Name (<admin@yacn.pw>)
+Phil Schuler http://devops-blog.net
+Based on https://github.com/yacn/spacewalk-server-chef by "Yet Another Clever Name" (<admin@yacn.pw>)

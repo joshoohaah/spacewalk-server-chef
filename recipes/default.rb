@@ -36,8 +36,6 @@ end
   end
 end
 
-include_recipe "spacewalk-server::postgres-volume"
-
 template "#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf" do
   source 'spacewalk-answers.conf.erb'
   mode 0755
@@ -45,10 +43,16 @@ template "#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf" do
 end
 
 execute 'spacewalk-setup' do
-  command "spacewalk-setup --disconnected --answer-file=#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf"
+  command "spacewalk-setup --non-interactive --skip-db-diskspace-check --disconnected --answer-file=#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf"
   action :run
-  creates "/etc/rhn/rhn.conf"
+  creates "/var/log/rhn/rhn_installation.log"
+  only_if {node['spacewalk_installed'].nil?}
 end
+
+ohai_hint 'spacewalk_installed' do
+  content Hash[:installed, true]
+end
+  
 
 link '/etc/init.d/spacewalk-service' do
   to '/usr/sbin/spacewalk-service'
