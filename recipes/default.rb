@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 # Copyright (C) 2013 Yet Another Clever Name
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
@@ -30,7 +30,7 @@ package 'spacewalk-repo' do
   action :install
 end
 
-%w{spacewalk-setup-postgresql spacewalk-postgresql}.each do |p|
+%w(spacewalk-setup-postgresql spacewalk-postgresql).each do |p|
   package p do
     action :install
   end
@@ -45,14 +45,13 @@ end
 execute 'spacewalk-setup' do
   command "spacewalk-setup --non-interactive --skip-db-diskspace-check --disconnected --answer-file=#{Chef::Config[:file_cache_path]}/spacewalk-answers.conf"
   action :run
-  creates "/var/log/rhn/rhn_installation.log"
-  only_if {node['spacewalk_installed'].nil?}
+  creates '/var/log/rhn/rhn_installation.log'
+  only_if { node['spacewalk_installed'].nil? }
 end
 
 ohai_hint 'spacewalk_installed' do
   content Hash[:installed, true]
 end
-  
 
 link '/etc/init.d/spacewalk-service' do
   to '/usr/sbin/spacewalk-service'
@@ -61,6 +60,6 @@ end
 
 # RedHat init script doesn't support chkconfig. Imagine that...
 service 'spacewalk-service' do
-  supports :status => true, :reload => true, :restart => true
+  supports status: true, reload: true, restart: true
   action :start
 end

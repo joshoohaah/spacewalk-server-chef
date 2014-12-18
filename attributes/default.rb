@@ -45,9 +45,8 @@ end
 # ::ubuntu configuration
 default['spacewalk']['sync']['user'] = 'admin'
 default['spacewalk']['sync']['password'] = 'admin'
-default['spacewalk']['sync']['channels'] = {'precise' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise/main/binary-amd64/',
-                                            'precise-updates' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-updates/main/binary-amd64/',
-                                            'precise-security' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-security/main/binary-amd64/'
+default['spacewalk']['sync']['channels'] = { 'precise' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise/main/binary-amd64/',
+                                             'precise-updates' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-updates/main/binary-amd64/',
+                                             'precise-security' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-security/main/binary-amd64/'
                                            }
 default['spacewalk']['errata']['exclude-channels'] = 'precise'
-
