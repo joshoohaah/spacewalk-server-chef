@@ -1,5 +1,7 @@
 
 default['spacewalk']['server']['db']['type'] = 'postgres'
+default['spacewalk']['server']['errata'] = true
+default['spacewalk']['hostname'] = node['hostname']
 
 # Answer file configuration
 default['spacewalk']['server']['admin_email'] = 'root@localhost'
@@ -39,3 +41,13 @@ when 'oracle'
   default['spacewalk']['server']['db']['host'] = 'localhost'
   default['spacewalk']['server']['db']['port'] = 1521
 end
+
+# ::ubuntu configuration
+default['spacewalk']['sync']['user'] = 'admin'
+default['spacewalk']['sync']['password'] = 'admin'
+default['spacewalk']['sync']['channels'] = {'precise' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise/main/binary-amd64/',
+                                            'precise-updates' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-updates/main/binary-amd64/',
+                                            'precise-security' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-security/main/binary-amd64/'
+                                           }
+default['spacewalk']['sync']['channels']['exclude'] = 'precise'
+

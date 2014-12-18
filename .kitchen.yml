@@ -14,5 +14,7 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[spacewalk-server]"]
+  run_list: 
+    - recipe[spacewalk-server]
+    - recipe[spacewalk-server::ubuntu]
   attributes: {}
