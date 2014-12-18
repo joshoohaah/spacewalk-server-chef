@@ -1,7 +1,3 @@
-node.default['yum']['epel-testing']['enabled'] = true
-node.default['yum']['epel-testing']['managed'] = true
-include_recipe 'yum-epel'
-
 directory "/opt/spacewalk" do
   owner "root"
   group "root"
@@ -61,9 +57,18 @@ if node['spacewalk']['server']['errata']
       :user => node['spacewalk']['sync']['user'],
       :pass => node['spacewalk']['sync']['password'],
       :server => node['spacewalk']['hostname'],
-      :exclude => node['spacewalk']['sync']['channels']['exclude']
+      :exclude => node['spacewalk']['errata']['exclude-channels']
     })
   end
+
+  cron "sw-errata-import" do
+    hour "5"
+    minute "0"
+    command "/opt/spacewalk/spacewalk-errata.sh"
+  end
+  
+  cpan_module 'Text::Unidecode'
+  cpan_module 'XML::Simple'
 
   directory "/opt/spacewalk/errata" do
     owner "root"

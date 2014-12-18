@@ -49,5 +49,5 @@ default['spacewalk']['sync']['channels'] = {'precise' => 'http://de.archive.ubun
                                             'precise-updates' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-updates/main/binary-amd64/',
                                             'precise-security' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-security/main/binary-amd64/'
                                            }
-default['spacewalk']['sync']['channels']['exclude'] = 'precise'
+default['spacewalk']['errata']['exclude-channels'] = 'precise'
 

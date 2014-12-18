@@ -13,6 +13,8 @@ Include `spacewalk-server::default` for basic Spacewalk installation.
 
 Include `spacewalk-server::ubuntu` for setting up repo-sync and errata import for Ubuntu channels.
 
+Include `spacewalk-server::rhel` for setting up repo-sync and errata import for CentOS/RHEL channels. ( write this recipe and PR please )
+
 Include `spacewalk-server::iptables` to configure iptables for Spacewalk.
 
 ### Attributes ###
@@ -43,7 +45,8 @@ default['spacewalk']['sync']['channels'] = {'precise' => 'http://de.archive.ubun
                                             'precise-updates' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-updates/main/binary-amd64/',
                                             'precise-security' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-security/main/binary-amd64/'
                                            }
-default['spacewalk']['sync']['channels']['exclude'] = 'precise'
+# channels to be excluded from errata, like base which doesnt have updates
+default['spacewalk']['errata']['exclude-channels'] = 'precise'
 ```
 
 
