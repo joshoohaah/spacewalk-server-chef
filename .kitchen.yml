@@ -16,5 +16,6 @@ suites:
 - name: default
   run_list: 
     - recipe[spacewalk-server]
+    - recipe[spacewalk-server::iptables]
     - recipe[spacewalk-server::ubuntu]
   attributes: {}
