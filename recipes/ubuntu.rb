@@ -26,6 +26,8 @@ package 'gcc' do
   action :install
 end
 
+# see attributes.rb for sudo config necessary for cpanminus to work
+include_recipe 'sudo'
 include_recipe 'cpanminus::default'
 cpan_module 'WWW::Mechanize'
 
