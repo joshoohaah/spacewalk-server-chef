@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of spacewalk-server
 
+## 0.2.2:
+* Moved Errata import prior to repo-sync
+
 ## 0.2.1:
 * Working repo-sync and errata import for Ubuntu channels
 
