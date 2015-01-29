@@ -33,7 +33,7 @@ cpan_module 'WWW::Mechanize'
 
 node['spacewalk']['sync']['channels'].each do |name, url|
   cron "sw-repo-sync_#{name}" do
-    hour '2'
+    hour '3'
     minute '0'
     command "/opt/spacewalk/spacewalk-debian-sync.pl --username '#{node['spacewalk']['sync']['user']}' --password '#{node['spacewalk']['sync']['password']}' --channel '#{name}' --url '#{url}'"
   end
@@ -62,8 +62,8 @@ if node['spacewalk']['server']['errata']
   end
 
   cron 'sw-errata-import' do
-    hour '5'
-    minute '0'
+    hour '1'
+    minute '30'
     command '/opt/spacewalk/spacewalk-errata.sh'
   end
 
