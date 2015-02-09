@@ -1,0 +1,19 @@
+language: ruby
+
+cache:
+  - apt
+  - bundler
+
+before_install:
+  - sudo apt-get update -qq
+
+script:
+  - rm -f Gemfile.lock
+  - bundle install --jobs 4 --retry 5
+  - rm -f Berksfile.lock
+  - bundle exec berks install
+  - bundle exec berks update
+  - bundle exec rake ci
+
+after_script:
+  - bundle exec kitchen destroy all
