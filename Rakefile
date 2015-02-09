@@ -12,3 +12,8 @@ FoodCritic::Rake::LintTask.new do |t|
     tags: ['~FC037']
   }
 end
+
+require 'kitchen/rake_tasks'
+Kitchen::RakeTasks.new
+
+task ci: %w(style foodcritic unit kitchen:all)

@@ -12,7 +12,6 @@ script:
   - bundle install --jobs 4 --retry 5
   - rm -f Berksfile.lock
   - bundle exec berks install
-  - bundle exec berks update
   - bundle exec rake ci
 
 after_script:
