@@ -14,6 +14,8 @@ before_install:
   - sudo vagrant plugin install vagrant-vbguest  
 
 script:
+  - sudo source ~/.bashrc
+  - sudo vagrant init
   - sudo vagrant up
   - rm -f Gemfile.lock
   - bundle install --jobs 4 --retry 5
