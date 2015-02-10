@@ -17,11 +17,12 @@ script:
   - sudo source ~/.bashrc
   - sudo vagrant init
   - sudo vagrant up
-  - rm -f Gemfile.lock
-  - bundle install --jobs 4 --retry 5
-  - rm -f Berksfile.lock
-  - bundle exec berks install
-  - bundle exec rake ci
+  - sudo VBoxManage --version
+  # - rm -f Gemfile.lock
+  # - bundle install --jobs 4 --retry 5
+  # - rm -f Berksfile.lock
+  # - bundle exec berks install
+  # - bundle exec rake ci
 
 after_script:
   - bundle exec kitchen destroy all
