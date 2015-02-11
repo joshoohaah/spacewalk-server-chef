@@ -1,0 +1,11 @@
+image: centos:6.6
+env:
+  - BERKSHELF_PATH=/tmp/
+script:
+  - sudo yum update
+  - curl -L https://www.chef.io/chef/install.sh | sudo bash
+  - bundle install  
+  - bundle exec berks vendor /tmp/cookbooks
+  - cp dummy-validation.pem /tmp/validation.pem
+  - cp dna.json /tmp/dna.json
+  - chef-client -z -c client.rb -j dna.json
