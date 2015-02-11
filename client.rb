@@ -1,10 +1,10 @@
 node_name "ci-ubuntu"
-#cookbook_path ["/tmp/kitchen/cookbooks", "/tmp/kitchen/site-cookbooks"]
-#data_bag_path "/tmp/kitchen/data_bags"
-#environment_path "/tmp/kitchen/environments"
-#node_path "/tmp/kitchen/nodes"
-#role_path "/tmp/kitchen/roles"
-#client_path "/tmp/kitchen/clients"
+cookbook_path ["/tmp//cookbooks"]
+data_bag_path "/tmp/data_bags"
+environment_path "/tmp/environments"
+node_path "/tmp/nodes"
+role_path "/tmp/roles"
+client_path "/tmp/clients"
 #user_path "/tmp/users"
 validation_key "/tmp/validation.pem"
 client_key "/tmp/client.pem"
