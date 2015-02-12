@@ -1,28 +1,21 @@
 language: ruby
 
 cache:
-  - apt
   - bundler
+  - apt
+
+env: 
+  - BERKSHELF_PATH=/tmp/
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install virtualbox virtualbox-ose-dkms linux-headers-$(uname -r)
-  - sudo wget -nv https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
-  - sudo dpkg -i vagrant_1.7.2_x86_64.deb
-  - sudo vagrant plugin install vagrant-omnibus
-  - sudo vagrant plugin install vagrant-chef-zero
-  - sudo vagrant plugin install vagrant-vbguest  
+  - curl -L https://www.chef.io/chef/install.sh | sudo bash
+
+install:
+  - bundle install  
+  - bundle exec berks vendor /tmp/cookbooks
+  - cp dummy-validation.pem /tmp/validation.pem
+  - cp dna.json /tmp/dna.json
 
 script:
-  - sudo source ~/.bashrc
-  - sudo vagrant init
-  - sudo vagrant up
-  - sudo VBoxManage --version
-  # - rm -f Gemfile.lock
-  # - bundle install --jobs 4 --retry 5
-  # - rm -f Berksfile.lock
-  # - bundle exec berks install
-  # - bundle exec rake ci
-
-after_script:
-  - bundle exec kitchen destroy all
+  - chef-client -z -c client.rb -j dna.json
