@@ -45,8 +45,14 @@ default['spacewalk']['sync']['channels'] = {'precise' => 'http://de.archive.ubun
                                             'precise-updates' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-updates/main/binary-amd64/',
                                             'precise-security' => 'http://de.archive.ubuntu.com/ubuntu/dists/precise-security/main/binary-amd64/'
                                            }
+# when should repo sync be run. should be AFTER errata import
+default['spacewalk']['sync']['cron']['h'] = '7'
+default['spacewalk']['sync']['cron']['m'] = '0'
 # channels to be excluded from errata, like base which doesnt have updates
 default['spacewalk']['errata']['exclude-channels'] = 'precise'
+# when should errata be imported. should be AFTER 4:30 GMT+1 because mailinglist gzip gets updaten then
+default['spacewalk']['errata']['cron']['h'] = '6'
+default['spacewalk']['errata']['cron']['m'] = '0'
 ```
 
 

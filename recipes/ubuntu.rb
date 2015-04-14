@@ -30,11 +30,12 @@ end
 include_recipe 'sudo'
 include_recipe 'cpanminus::default'
 cpan_module 'WWW::Mechanize'
+# package perl-WWW-Mechanize available in repo, test with it
 
 node['spacewalk']['sync']['channels'].each do |name, url|
   cron "sw-repo-sync_#{name}" do
-    hour '3'
-    minute '0'
+    hour node['spacewalk']['sync']['cron']['h']
+    minute node['spacewalk']['sync']['cron']['m']
     command "/opt/spacewalk/spacewalk-debian-sync.pl --username '#{node['spacewalk']['sync']['user']}' --password '#{node['spacewalk']['sync']['password']}' --channel '#{name}' --url '#{url}'"
   end
 end
@@ -62,11 +63,12 @@ if node['spacewalk']['server']['errata']
   end
 
   cron 'sw-errata-import' do
-    hour '1'
-    minute '30'
+    hour node['spacewalk']['errata']['cron']['h']
+    minute node['spacewalk']['errata']['cron']['m']
     command '/opt/spacewalk/spacewalk-errata.sh'
   end
 
+  # yum install perl-XML-Simple perl-Text-Unidecode
   cpan_module 'Text::Unidecode'
   cpan_module 'XML::Simple'
 

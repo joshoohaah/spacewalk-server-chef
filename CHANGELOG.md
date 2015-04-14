@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of spacewalk-server
 
+## 0.2.3:
+* Made Errata import and repo-sync cron variable and default to 6am / 7am as the mailinglist gzip is created at 5.30
+
 ## 0.2.2:
 * Moved Errata import prior to repo-sync
 
