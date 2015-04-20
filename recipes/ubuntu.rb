@@ -5,6 +5,10 @@ directory '/opt/spacewalk' do
   action :create
 end
 
+package 'perl-WWW-Mechanize' do
+  action :install
+end
+
 # install scripts/crons for repo sync
 remote_file '/opt/spacewalk/spacewalk-debian-sync.pl' do
   owner 'root'
@@ -22,16 +26,6 @@ cookbook_file '/usr/lib/python2.6/site-packages/debian/debfile.py' do
   mode '0644'
 end
 
-package 'gcc' do
-  action :install
-end
-
-# see attributes.rb for sudo config necessary for cpanminus to work
-include_recipe 'sudo'
-include_recipe 'cpanminus::default'
-cpan_module 'WWW::Mechanize'
-# package perl-WWW-Mechanize available in repo, test with it
-
 node['spacewalk']['sync']['channels'].each do |name, url|
   cron "sw-repo-sync_#{name}" do
     hour node['spacewalk']['sync']['cron']['h']
@@ -42,6 +36,12 @@ end
 
 # install scripts/crons for errata import
 if node['spacewalk']['server']['errata']
+  %w(perl-XML-Simple perl-Text-Unidecode).each do |pkg|
+    package pkg do
+      action :install
+    end
+  end
+
   %w(errata-import.pl parseUbuntu.py).each do |file|
     remote_file "/opt/spacewalk/#{file}" do
       owner 'root'
@@ -67,10 +67,6 @@ if node['spacewalk']['server']['errata']
     minute node['spacewalk']['errata']['cron']['m']
     command '/opt/spacewalk/spacewalk-errata.sh'
   end
-
-  # yum install perl-XML-Simple perl-Text-Unidecode
-  cpan_module 'Text::Unidecode'
-  cpan_module 'XML::Simple'
 
   directory '/opt/spacewalk/errata' do
     owner 'root'

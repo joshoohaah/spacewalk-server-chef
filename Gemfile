@@ -21,6 +21,10 @@ group :kitchen_vagrant do
   gem 'kitchen-vagrant'
 end
 
+group :kitchen_docker do
+  gem 'kitchen-docker'
+end
+
 group :development do
   gem 'ruby_gntp'
   gem 'growl'

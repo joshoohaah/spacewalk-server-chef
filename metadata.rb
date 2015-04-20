@@ -4,7 +4,7 @@ maintainer_email 'the.cypher@gmail.com'
 license 'MIT'
 description 'Installs/Configures a Spacewalk Server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.2.3'
+version '0.2.4'
 
 %w(fedora redhat centos).each do |os|
   supports os
@@ -16,5 +16,3 @@ depends 'yum', '> 3.0.0'
 depends 'yum-epel'
 depends 'yum-fedora'
 depends 'perl'
-depends 'sudo'
-depends 'cpanminus'

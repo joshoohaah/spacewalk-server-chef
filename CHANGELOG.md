@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of spacewalk-server
 
+## 0.2.4:
+* Use perl packages from yum rather than installing/compiling with cpanminus
+
 ## 0.2.3:
 * Made Errata import and repo-sync cron variable and default to 6am / 7am as the mailinglist gzip is created at 5.30
 
