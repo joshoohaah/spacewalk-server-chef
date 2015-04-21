@@ -10,7 +10,10 @@ provisioner:
   data_bags_path: test/fixtures/data_bags
 
 platforms:
-- name: centos-6.5
+- name: centos-6.6
+  driver_config:
+    image: centos:6.6
+    platform: centos
 
 suites:
 - name: default
