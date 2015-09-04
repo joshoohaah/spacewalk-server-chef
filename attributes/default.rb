@@ -51,6 +51,6 @@ default['spacewalk']['sync']['channels'] = { 'precise' => 'http://de.archive.ubu
                                            }
 default['spacewalk']['sync']['cron']['h'] = '7'
 default['spacewalk']['sync']['cron']['m'] = '0'
-default['spacewalk']['errata']['exclude-channels'] = 'precise'
+default['spacewalk']['errata']['exclude-channels'] = "'precise'" # multiple = "'precise','trusty'"
 default['spacewalk']['errata']['cron']['h'] = '6'
 default['spacewalk']['errata']['cron']['m'] = '0'

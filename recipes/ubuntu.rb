@@ -36,19 +36,22 @@ end
 
 # install scripts/crons for errata import
 if node['spacewalk']['server']['errata']
-  %w(perl-XML-Simple perl-Text-Unidecode).each do |pkg|
-    package pkg do
-      action :install
-    end
+  cookbook_file '/opt/spacewalk/parseUbuntu.py' do
+    source 'parseUbuntu.py'
+    owner 'root'
+    group 'root'
+    mode '0755'
   end
-
-  %w(errata-import.pl parseUbuntu.py).each do |file|
-    remote_file "/opt/spacewalk/#{file}" do
-      owner 'root'
-      group 'root'
-      mode '0755'
-      source "https://raw.githubusercontent.com/philicious/spacewalk-scripts/master/#{file}"
-    end
+  
+  template '/opt/spacewalk/errata-import.py' do
+    source 'errata-import.py.erb'
+    owner 'root'
+    group 'root'
+    mode '755'
+    variables(user: node['spacewalk']['sync']['user'],
+              pass: node['spacewalk']['sync']['password'],
+              server: node['spacewalk']['hostname'],
+              exclude: node['spacewalk']['errata']['exclude-channels'])
   end
 
   template '/opt/spacewalk/spacewalk-errata.sh' do
@@ -56,10 +59,6 @@ if node['spacewalk']['server']['errata']
     owner 'root'
     group 'root'
     mode '0755'
-    variables(user: node['spacewalk']['sync']['user'],
-              pass: node['spacewalk']['sync']['password'],
-              server: node['spacewalk']['hostname'],
-              exclude: node['spacewalk']['errata']['exclude-channels'])
   end
 
   cron 'sw-errata-import' do

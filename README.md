@@ -49,7 +49,7 @@ default['spacewalk']['sync']['channels'] = {'precise' => 'http://de.archive.ubun
 default['spacewalk']['sync']['cron']['h'] = '7'
 default['spacewalk']['sync']['cron']['m'] = '0'
 # channels to be excluded from errata, like base which doesnt have updates
-default['spacewalk']['errata']['exclude-channels'] = 'precise'
+default['spacewalk']['errata']['exclude-channels'] = "'precise'" # multiple = "'precise','trusty'"
 # when should errata be imported. should be AFTER 4:30 GMT+1 because mailinglist gzip gets updaten then
 default['spacewalk']['errata']['cron']['h'] = '6'
 default['spacewalk']['errata']['cron']['m'] = '0'

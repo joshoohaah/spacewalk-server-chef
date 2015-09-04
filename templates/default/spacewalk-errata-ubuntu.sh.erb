@@ -13,5 +13,4 @@ gunzip -f /opt/spacewalk/errata/$DATE.txt.gz
 cd /opt/spacewalk/ && \
 /opt/spacewalk/parseUbuntu.py errata/$DATE.txt && \
 mv ubuntu-errata.xml errata/ubuntu-errata.xml
-# exclude the main channel as updates are never pushed there
-/opt/spacewalk/errata-import.pl --server <%= @server %> --errata errata/ubuntu-errata.xml --user <%= @user %> --pass <%= @pass %> --publish --exclude-channels <%= @exclude %> >> /var/log/ubuntu-errata.log
+/opt/spacewalk/errata-import.py >> /var/log/ubuntu-errata.log

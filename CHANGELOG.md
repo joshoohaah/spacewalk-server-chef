@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of spacewalk-server
 
+## 0.2.5:
+* Refactored Ubuntu Errata import. Faster and improved now. 
+  (Thx to https://github.com/pandujar for his PR on the import script !)
+
 ## 0.2.4:
 * Use perl packages from yum rather than installing/compiling with cpanminus
 
