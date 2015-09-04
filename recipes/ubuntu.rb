@@ -42,7 +42,7 @@ if node['spacewalk']['server']['errata']
     group 'root'
     mode '0755'
   end
-  
+
   template '/opt/spacewalk/errata-import.py' do
     source 'errata-import.py.erb'
     owner 'root'
