@@ -5,16 +5,12 @@ directory '/opt/spacewalk' do
   action :create
 end
 
-package 'perl-WWW-Mechanize' do
-  action :install
-end
-
 # install scripts/crons for repo sync
-remote_file '/opt/spacewalk/spacewalk-debian-sync.pl' do
+cookbook_file '/opt/spacewalk/debianSync.py' do
+  source 'debianSync.py'
   owner 'root'
   group 'root'
   mode '0755'
-  source 'https://raw.githubusercontent.com/stevemeier/spacewalk-debian-sync/master/spacewalk-debian-sync.pl'
 end
 
 # fixes the missing compression lzma in python-debian-0.1.21-10.el6
@@ -30,7 +26,7 @@ node['spacewalk']['sync']['channels'].each do |name, url|
   cron "sw-repo-sync_#{name}" do
     hour node['spacewalk']['sync']['cron']['h']
     minute node['spacewalk']['sync']['cron']['m']
-    command "/opt/spacewalk/spacewalk-debian-sync.pl --username '#{node['spacewalk']['sync']['user']}' --password '#{node['spacewalk']['sync']['password']}' --channel '#{name}' --url '#{url}'"
+    command "/opt/spacewalk/debianSync.py --username '#{node['spacewalk']['sync']['user']}' --password '#{node['spacewalk']['sync']['password']}' --channel '#{name}' --url '#{url}'"
   end
 end
 
