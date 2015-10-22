@@ -17,7 +17,7 @@ import xml.etree.cElementTree as xml
 url = "http://<%= @server %>/rpc/api"
 login = "<%= @user %>"
 passwd = "<%= @pass %>"
-filename = 'errata/ubuntu-errata.xml'
+filename = 'ubuntu-errata.xml'
 excludedChannels = [<%= @exclude %>] # Scan all available channels except these ones
 includedChannels = [ ] # Only scan channels on this list
 #Config Settings#
