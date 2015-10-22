@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of spacewalk-server
 
+## 0.2.6
+* Replaced the Perl debian-repo sync script with a overhauled Python version
+* Minor bugfixes
+
 ## 0.2.5:
 * Refactored Ubuntu Errata import. Faster and improved now. 
   (Thx to https://github.com/pandujar for his PR on the import script !)
