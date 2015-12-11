@@ -15,7 +15,7 @@ end
 
 # fixes the missing compression lzma in python-debian-0.1.21-10.el6
 # see https://bugzilla.redhat.com/show_bug.cgi?id=1021625
-cookbook_file '/usr/lib/python2.6/site-packages/debian/debfile.py' do
+cookbook_file '/usr/lib/python2.7/dist-packages/debian/debfile.py' do
   source 'debfile.py'
   owner 'root'
   group 'root'

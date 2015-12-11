@@ -20,9 +20,9 @@ arch = node['kernel']['machine'] == 'x86_64' ? 'x86_64' : 'i386'
 case node['platform_family']
 when 'rhel'
   platform_major = node['platform_version'][0]
-  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.2/RHEL/#{platform_major}/#{arch}/spacewalk-repo-2.2-1.el#{platform_major}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.3/RHEL/#{platform_major}/#{arch}/spacewalk-repo-2.3-4.el#{platform_major}.noarch.rpm"
 when 'fedora'
-  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.2/Fedora/#{node['platform_version']}/#{arch}/spacewalk-repo-2.2-1.fc#{node['platform_version']}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.3/Fedora/#{node['platform_version']}/#{arch}/spacewalk-repo-2.3-4.fc#{node['platform_version']}.noarch.rpm"
 end
 
 case node['spacewalk']['server']['db']['type']
