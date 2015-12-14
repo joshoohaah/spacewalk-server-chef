@@ -11,6 +11,12 @@
 include_recipe 'yum-epel' if platform_family?('rhel')
 include_recipe 'yum-fedora' if platform_family?('fedora')
 
+python_runtime '2'
+
+python_package 'six' do
+  version '1.10.0'
+end
+
 yum_repository 'jpackage-generic' do
   url 'http://mirrors.dotsrc.org/pub/jpackage/5.0/generic/free/'
   mirrorlist 'http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0'

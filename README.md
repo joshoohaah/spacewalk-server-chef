@@ -5,7 +5,9 @@ server.
 It also sets up Errata support if you like.
 
 ### Requirements ###
-* RHEL / CentOS  > 6
+* RHEL / CentOS  > 7
+
+Updated repos means that the installation is a lot smoother now and requires less customization.
 
 ### Recipes ###
 
