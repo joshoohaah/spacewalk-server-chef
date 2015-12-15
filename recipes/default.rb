@@ -69,3 +69,9 @@ service 'spacewalk-service' do
   supports status: true, reload: true, restart: true
   action :start
 end
+
+#Installing the spacecmd tool
+package 'spacecmd' do
+  action :install
+end
+
