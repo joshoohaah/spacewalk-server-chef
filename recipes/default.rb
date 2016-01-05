@@ -7,15 +7,40 @@
 # All rights reserved - Do Not Redistribute
 #
 
+
+#This will require to be encrypted
+require 'digest/sha2'
+password = 'admin1234'
+salt = 'Q2fxUTqBPoynaN9M'
+hash = password.crypt("$5$#{salt}")
+node.default['spacewalk']['server']['user'] = 'admin'
+node.default['spacewalk']['server']['password'] = 'admin1234'
+
+#puts "Hash of password : #{hash}"
+
+
 # Add required YUM repos
 include_recipe 'yum-epel' if platform_family?('rhel')
 include_recipe 'yum-fedora' if platform_family?('fedora')
 
-python_runtime '2'
+#python_runtime '2'
 
-python_package 'six' do
-  version '1.10.0'
+#python_package 'six' do
+#  version '1.10.0'
+#end
+
+
+template '/etc/spacecmd.conf' do
+  source 'spacecmd.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  variables({
+     :user => node['spacewalk']['server']['user'],
+     :password => node['spacewalk']['server']['password']
+  })
 end
+
 
 yum_repository 'jpackage-generic' do
   url 'http://mirrors.dotsrc.org/pub/jpackage/5.0/generic/free/'
