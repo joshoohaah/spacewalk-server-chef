@@ -1,3 +1,13 @@
+
+spacewalk-server_first-user 'admin' do
+  password "admin1234"
+  first_name "Joe"
+  last_name "Blogs"
+  db_user node['spacewalk']['server']['db']['user']
+  db_password node['spacewalk']['server']['db']['password']
+  db_schema node['spacewalk']['server']['db']['name']
+end
+
 psqlscript = Chef::Config[:file_cache_path] + '/first_user.psql'
 
  template psqlscript do
