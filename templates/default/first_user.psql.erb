@@ -1,0 +1,11 @@
+DO $$DECLARE
+  user_id INTEGER;
+BEGIN
+  perform logging._set_log_id(1);
+
+  user_id := create_new_user(1,'<%= @first_user_name %>','<%= @first_user_password %>',NULL,'<%= @first_user_prefix %>','<%= @first_user_first_name %>','<%= @first_user_last_name %>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+  insert into rhnusergroupmembers values (user_id, 1, 'N', current_timestamp, current_timestamp);
+  insert into rhnusergroupmembers values (user_id, 5, 'N', current_timestamp, current_timestamp);
+
+END$$;
