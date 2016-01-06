@@ -1,4 +1,5 @@
 # Spacewalk Server Cookbook #
+<B>WORK IN PROGRESS</B>
 
 This cookbook installs and configures a node as a [Spacewalk](http://spacewalk.redhat.com/)
 server.
