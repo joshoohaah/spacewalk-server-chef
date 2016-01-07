@@ -1,10 +1,14 @@
 DO $$DECLARE
   user_id INTEGER;
 BEGIN
+  --Triggers on the tables require a log id to be set
   perform logging._set_log_id(1);
 
-  user_id := create_new_user(1,'<%= @first_user_name %>','<%= @first_user_password %>',NULL,'<%= @first_user_prefix %>','<%= @first_user_first_name %>','<%= @first_user_last_name %>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+  --Procedure insert the user in to web_contact, other tables are updated via triggers too
+  user_id := create_new_user(1,'<%= @first_user_login %>','<%= @first_user_password %>',NULL,'<%= @first_user_prefix %>','<%= @first_user_first_name %>','<%= @first_user_last_name %>',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
+  /* To be an admin the user needs to be in the admin groups this mapping is done in rhnusergroupmembers
+     the group ids (1,5) are hardcoded so this could be a problem if the ids change */
   insert into rhnusergroupmembers values (user_id, 1, 'N', current_timestamp, current_timestamp);
   insert into rhnusergroupmembers values (user_id, 5, 'N', current_timestamp, current_timestamp);
 
