@@ -20,6 +20,7 @@ cookbook_file '/usr/lib/python2.7/dist-packages/debian/debfile.py' do
   owner 'root'
   group 'root'
   mode '0644'
+  only_if {File.exists?('/usr/lib/python2.7/dist-packages/debian/debfile.py')}
 end
 
 node['spacewalk']['sync']['channels'].each do |name, url|
