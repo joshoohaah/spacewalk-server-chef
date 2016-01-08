@@ -54,10 +54,12 @@ action :start do
          :first_user_first_name => "#{first_name}",
          :first_user_last_name => "#{last_name}"
          })
+         sensitive true # Lets not have the password hash in the ouput
      end
 
      execute 'psql_script' do
        command "export PGPASSWORD=#{db_password}; psql -1 -f " + psqlscript +" #{db_schema} #{db_user}"
+       sensitive true # Keep the db_password out of the output
      end
 
      # Don't leave the file with the password hash lying around
