@@ -29,19 +29,6 @@ include_recipe 'yum-fedora' if platform_family?('fedora')
 #  version '1.10.0'
 #end
 
-
-template '/etc/spacecmd.conf' do
-  source 'spacecmd.conf.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-  variables({
-     :user => node['spacewalk']['server']['user'],
-     :password => node['spacewalk']['server']['password']
-  })
-end
-
-
 yum_repository 'jpackage-generic' do
   url 'http://mirrors.dotsrc.org/pub/jpackage/5.0/generic/free/'
   mirrorlist 'http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=5.0'
@@ -93,10 +80,5 @@ end
 service 'spacewalk-service' do
   supports status: true, reload: true, restart: true
   action :start
-end
-
-#Installing the spacecmd tool
-package 'spacecmd' do
-  action :install
 end
 
