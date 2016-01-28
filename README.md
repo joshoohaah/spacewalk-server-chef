@@ -1,8 +1,14 @@
 # Spacewalk Server Cookbook #
+<B>WORK IN PROGRESS</B>
 
 This cookbook installs and configures a node as a [Spacewalk](http://spacewalk.redhat.com/)
 server.
 It also sets up Errata support if you like.
+
+Will also install Spacecmd which is a tool that can be used to create Channels using the command line.
+For this it will expect a user to be created called admin with password admin1234 on the channel.
+Working on automatic creation of that user now.
+
 
 ### Requirements ###
 * RHEL / CentOS  > 7

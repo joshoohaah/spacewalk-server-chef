@@ -35,6 +35,7 @@ attempts = 0
 
 #xmlrpc connect to server and retrieve key
 def connect(url, login, passwd):
+  print "URL is %s" % url
   try:
     global client, key
     client = xmlrpclib.Server(url, verbose=0)
@@ -48,7 +49,7 @@ def logout(key):
   client.auth.logout(key)
   print "[-] Clossing Session on %s" % url
 
-def CreatePackageList(key):
+def CreatePackageList(key):cd 
   try:
     print "[+] Creating inventory from Server:"
     if not includedChannels:

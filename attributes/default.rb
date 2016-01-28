@@ -3,6 +3,8 @@ default['spacewalk']['server']['db']['type'] = 'postgres'
 default['spacewalk']['server']['errata'] = true
 default['spacewalk']['hostname'] = node['hostname']
 
+
+
 # Answer file configuration
 default['spacewalk']['server']['admin_email'] = 'root@localhost'
 default['spacewalk']['server']['ssl']['org'] = 'Spacewalk Org'
@@ -20,9 +22,9 @@ arch = node['kernel']['machine'] == 'x86_64' ? 'x86_64' : 'i386'
 case node['platform_family']
 when 'rhel'
   platform_major = node['platform_version'][0]
-  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.3/RHEL/#{platform_major}/#{arch}/spacewalk-repo-2.3-4.el#{platform_major}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.4/RHEL/#{platform_major}/#{arch}/spacewalk-repo-2.4-3.el#{platform_major}.noarch.rpm"
 when 'fedora'
-  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.3/Fedora/#{node['platform_version']}/#{arch}/spacewalk-repo-2.3-4.fc#{node['platform_version']}.noarch.rpm"
+  default['spacewalk']['server']['repo_url'] = "http://spacewalk.redhat.com/yum/2.4/Fedora/#{node['platform_version']}/#{arch}/spacewalk-repo-2.4-3.fc#{node['platform_version']}.noarch.rpm"
 end
 
 case node['spacewalk']['server']['db']['type']
@@ -54,3 +56,9 @@ default['spacewalk']['sync']['cron']['m'] = '0'
 default['spacewalk']['errata']['exclude-channels'] = "'precise'" # multiple = "'precise','trusty'"
 default['spacewalk']['errata']['cron']['h'] = '6'
 default['spacewalk']['errata']['cron']['m'] = '0'
+
+
+
+default['spacewalk']['server']['config_channels']['centosbase'] = ["Description" => "Base Channel For Centos"]
+default['spacewalk']['server']['config_channels']['ubuntubase'] = ["Description" => "Base Channel For Ubuntu"]
+default['spacewalk']['server']['config_channels']['webserverbase'] = ["Description" => "Base Channel For WebServer"]
