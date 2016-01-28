@@ -73,5 +73,6 @@ service 'spacewalk-service' do
     if node['platform_version'].to_f >= 7.0
       init_command '/etc/init.d/spacewalk-service'
     end
+  end
   action :start
 end
