@@ -8,17 +8,6 @@
 #
 
 
-#This will require to be encrypted
-require 'digest/sha2'
-password = 'admin1234'
-salt = 'Q2fxUTqBPoynaN9M'
-hash = password.crypt("$5$#{salt}")
-node.default['spacewalk']['server']['user'] = 'admin'
-node.default['spacewalk']['server']['password'] = 'admin1234'
-
-#puts "Hash of password : #{hash}"
-
-
 # Add required YUM repos
 include_recipe 'yum-epel' if platform_family?('rhel')
 include_recipe 'yum-fedora' if platform_family?('fedora')
