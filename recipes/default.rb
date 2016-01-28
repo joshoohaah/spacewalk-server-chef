@@ -68,6 +68,10 @@ end
 # RedHat init script doesn't support chkconfig. Imagine that...
 service 'spacewalk-service' do
   supports status: true, reload: true, restart: true
+  case node['platform']
+  when 'centos'
+    if node['platform_version'].to_f >= 7.0
+      init_command '/etc/init.d/spacewalk-service'
+    end
   action :start
 end
-
