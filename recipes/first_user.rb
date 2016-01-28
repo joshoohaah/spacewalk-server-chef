@@ -1,5 +1,5 @@
 
-spacewalk_admin node['spacewalk']['sync']['user'] do
+spacewalk_firstuser node['spacewalk']['sync']['user'] do
   password node['spacewalk']['sync']['password']
   prefix 'Mr.'
   first_name 'Joe'

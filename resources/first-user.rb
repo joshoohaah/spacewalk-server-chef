@@ -1,6 +1,6 @@
 require 'securerandom'
 
-resource_name :spacewalk_admin
+resource_name :spacewalk_firstuser
 
 property :login, String, name_property: true
 property :password, String, required: true
